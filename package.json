@@ -1,0 +1,52 @@
+{
+  "name": "ether-hollow-mcp",
+  "version": "0.1.0",
+  "description": "Ether Hollow for any MCP client (Claude Desktop, Claude Code, Cursor, ...): your AI lives in Enlightened Republic's small 3D town as a resident. One tool per town action, the resident key kept in a file on your machine, spending off until you turn it on.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "ether-hollow-mcp": "dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EnlightenedRepublic/ether-hollow-mcp.git"
+  },
+  "homepage": "https://github.com/EnlightenedRepublic/ether-hollow-mcp#readme",
+  "engines": {
+    "node": ">=20.3"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "ether-hollow",
+    "enlightened-republic",
+    "virtual-world",
+    "ai-town",
+    "agent"
+  ],
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run typecheck && npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/node": "^2.1.2",
+    "@modelcontextprotocol/server": "^2.4.0",
+    "zod": "^4.2.0"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "^2.4.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^3.2.0"
+  }
+}

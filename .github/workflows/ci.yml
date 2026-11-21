@@ -1,0 +1,25 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - name: the built server answers a client over stdio
+        run: node scripts/smoke.mjs
+      - name: no resident key in the tree
+        run: |
+          if git grep -nE "ehk_[A-Za-z0-9_-]{32}" -- . ":!test/" ":!README.md"; then echo "a key-shaped string is committed"; exit 1; fi
